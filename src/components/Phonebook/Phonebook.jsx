@@ -39,14 +39,11 @@ export class Phonebook  extends React.Component{
     
 
     deleteContact = (e) =>{
-        console.log(e.target.dataset.id);
         const index = this.state.contacts.findIndex(elem => elem.id === e.target.dataset.id)
-        console.log(index)
 
         this.setState( state => {
             const contacts = state.contacts;
             contacts.splice(index, 1);
-            console.log(contacts);
             return(
             {
                 contacts: [...contacts],
@@ -63,15 +60,10 @@ export class Phonebook  extends React.Component{
     }
 
     componentDidMount(){
-        console.log("afteparse " + this.getFromStoreg());
-        const data = this.getFromStoreg();
-        console.log("Data "+data);
         this.setState({contacts: this.getFromStoreg()});
     }
 
     componentDidUpdate(){
-        console.log("From storeg " + this.getFromStoreg());
-        console.log("Update");
         this.setToStorage();
     }
 
@@ -80,7 +72,6 @@ export class Phonebook  extends React.Component{
         return(
             
             <>
-            {this.setToStorage()}
             <FormAddContacts  inputFunc={this.changeHandler} submitFunc = {this.onSubmit}/>
             <Contacts contacts={this.state.contacts} 
             filter={this.state.filter} 
