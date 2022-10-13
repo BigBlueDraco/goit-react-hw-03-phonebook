@@ -36,6 +36,7 @@ export class Phonebook  extends React.Component{
             })
         })
     }
+    
 
     deleteContact = (e) =>{
         console.log(e.target.dataset.id);
@@ -53,9 +54,33 @@ export class Phonebook  extends React.Component{
         })
     }
 
+    getFromStoreg = () =>{
+        return JSON.parse(localStorage.getItem("contacts"));
+    }
+
+    setToStorage =()=>{
+        localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    }
+
+    componentDidMount(){
+        console.log("afteparse " + this.getFromStoreg());
+        const data = this.getFromStoreg();
+        console.log("Data "+data);
+        this.setState({contacts: this.getFromStoreg()});
+    }
+
+    componentDidUpdate(){
+        console.log("From storeg " + this.getFromStoreg());
+        console.log("Update");
+        this.setToStorage();
+    }
+
+
     render(){
         return(
+            
             <>
+            {this.setToStorage()}
             <FormAddContacts  inputFunc={this.changeHandler} submitFunc = {this.onSubmit}/>
             <Contacts contacts={this.state.contacts} 
             filter={this.state.filter} 
