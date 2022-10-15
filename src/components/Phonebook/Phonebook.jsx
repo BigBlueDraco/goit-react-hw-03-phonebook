@@ -44,6 +44,13 @@ export class Phonebook  extends React.Component{
         })
     }
 
+    componentDidUpdate(){  
+        localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    }
+    
+    componentDidMount(){
+        this.setState(() => ({"contacts": JSON.parse(localStorage.getItem("contacts"))}));
+    }
     render(){
         return(
             <>

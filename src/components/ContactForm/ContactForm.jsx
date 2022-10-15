@@ -74,6 +74,5 @@ export  class ContactForm extends Component {
     }
 }
 ContactForm.propTypes = {
-    inputFunc: PropTypes.func.isRequired,
     submitFunc: PropTypes.func.isRequired,
 }
